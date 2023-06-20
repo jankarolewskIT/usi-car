@@ -5,7 +5,7 @@ services:
     command: python manage.py run -h 0.0.0.0
     restart: always 
     env_file:
-      - ./app/services/web//.env
+      - ./app/services/web/.env
     ports:
       - '5001:5001'
     depends_on:
