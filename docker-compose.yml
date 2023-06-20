@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    build: ./app/services/web/
+    command: python manage.py run -h 0.0.0.0
+    restart: always 
+    env_file:
+      - ./app/services/web//.env
+    ports:
+      - '5001:5001'
+    depends_on:
+      - postgres
+  postgres:
+      image: postgres:10.5
+      restart: always
+      env_file:
+        - ./app/services/web/.env
+      logging:
+        options:
+          max-size: 10m
+          max-file: "3"
+      ports:
+        - '5438:5432'
+      volumes: 
+        - ./postgres-data:/var/lib/postgresql/data
+        # copy the sql script to create tables
+        - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql

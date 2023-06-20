@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card card-body">
+            <form action="/update/{{car.id}}" method="POST">
+                <div class="form-group">
+                    <input type="text" name="make" value="{{car.make}}" class="form-control" placeholder = "Marka">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="model" value="{{car.model}}" class="form-control" placeholder = "Model">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="registration_number" value="{{car.registration_number}}" class="form-control" placeholder = "Nr rejestracyjny">
+                </div>
+                <div class="form-group">
+                    <input type="datetime-local" name="time_arrive" value="{{car.time_arrive}}" class="form-control" placeholder = "Godzina przyjazdu">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Aktualizuj
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
